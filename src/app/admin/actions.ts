@@ -35,6 +35,14 @@ function memberFields(formData: FormData) {
     email: String(formData.get("email") ?? "").trim() || null,
     unit_area: String(formData.get("unit_area") ?? "").trim() || null,
     mobile: String(formData.get("mobile") ?? "").trim() || null,
+    unit: String(formData.get("unit") ?? "").trim() || null,
+    job: String(formData.get("job") ?? "").trim() || null,
+    native_contact: String(formData.get("native_contact") ?? "").trim() || null,
+    district: String(formData.get("district") ?? "").trim() || null,
+    assembly_mandalam: String(formData.get("assembly_mandalam") ?? "").trim() || null,
+    iqama_number: String(formData.get("iqama_number") ?? "").trim() || null,
+    working_zone: String(formData.get("working_zone") ?? "").trim() || null,
+    parliament_mandalam: String(formData.get("parliament_mandalam") ?? "").trim() || null,
   };
 }
 

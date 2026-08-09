@@ -11,6 +11,14 @@ type Member = {
   email: string | null;
   unit_area: string | null;
   mobile: string | null;
+  unit: string | null;
+  job: string | null;
+  native_contact: string | null;
+  district: string | null;
+  assembly_mandalam: string | null;
+  iqama_number: string | null;
+  working_zone: string | null;
+  parliament_mandalam: string | null;
 };
 
 const inputClass =
@@ -120,6 +128,83 @@ export default function MemberForm({
           <input
             name="mobile"
             defaultValue={initial?.mobile ?? ""}
+            className={inputClass}
+          />
+        </label>
+      </div>
+
+      <h2 className="mt-8 border-t border-party-red/10 pt-6 text-sm font-semibold uppercase tracking-wide text-party-red">
+        Registration Details
+      </h2>
+      <div className="mt-4 grid gap-4 sm:grid-cols-2">
+        <label className={labelClass}>
+          Unit
+          <input
+            name="unit"
+            defaultValue={initial?.unit ?? ""}
+            className={inputClass}
+          />
+        </label>
+
+        <label className={labelClass}>
+          Job
+          <input
+            name="job"
+            defaultValue={initial?.job ?? ""}
+            className={inputClass}
+          />
+        </label>
+
+        <label className={labelClass}>
+          Native Contact
+          <input
+            name="native_contact"
+            defaultValue={initial?.native_contact ?? ""}
+            className={inputClass}
+          />
+        </label>
+
+        <label className={labelClass}>
+          District
+          <input
+            name="district"
+            defaultValue={initial?.district ?? ""}
+            className={inputClass}
+          />
+        </label>
+
+        <label className={labelClass}>
+          Assembly Mandalam
+          <input
+            name="assembly_mandalam"
+            defaultValue={initial?.assembly_mandalam ?? ""}
+            className={inputClass}
+          />
+        </label>
+
+        <label className={labelClass}>
+          Iqama Number
+          <input
+            name="iqama_number"
+            defaultValue={initial?.iqama_number ?? ""}
+            className={inputClass}
+          />
+        </label>
+
+        <label className={labelClass}>
+          Working Zone
+          <input
+            name="working_zone"
+            defaultValue={initial?.working_zone ?? ""}
+            className={inputClass}
+          />
+        </label>
+
+        <label className={labelClass}>
+          Parliament Mandalam
+          <input
+            name="parliament_mandalam"
+            defaultValue={initial?.parliament_mandalam ?? ""}
             className={inputClass}
           />
         </label>
