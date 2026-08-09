@@ -2,15 +2,6 @@ import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
 export async function updateSession(request: NextRequest) {
-  if (request.nextUrl.searchParams.has("__diag")) {
-    return NextResponse.json({
-      hasUrl: Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL),
-      hasKey: Boolean(process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY),
-      urlPrefix: (process.env.NEXT_PUBLIC_SUPABASE_URL ?? "").slice(0, 20),
-      keyPrefix: (process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? "").slice(0, 20),
-    });
-  }
-
   let supabaseResponse = NextResponse.next({ request });
 
   try {
