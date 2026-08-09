@@ -1,13 +1,23 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fdfaf3;
+  --foreground: #1a1210;
+  --party-red: #a01c1c;
+  --party-red-dark: #7a1414;
+  --party-gold: #e0b13a;
+  --party-cream: #fdfaf3;
+  --party-ivory: #fdfaf3;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-party-red: var(--party-red);
+  --color-party-red-dark: var(--party-red-dark);
+  --color-party-gold: var(--party-gold);
+  --color-party-cream: var(--party-cream);
+  --color-party-ivory: var(--party-ivory);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-malayalam: var(--font-malayalam);
@@ -19,8 +29,9 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #1a1210;
+    --foreground: #fdfaf3;
+    --party-cream: #241a17;
   }
 }
 
