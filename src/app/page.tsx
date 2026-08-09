@@ -24,7 +24,7 @@ export default function Home() {
             <img
               src="/logo.png"
               alt="Navayugam logo"
-              className="h-12 w-12 rounded-full border-2 border-party-gold object-cover"
+              className="h-14 w-14 object-contain"
             />
             Navayugam <span className="font-malayalam">നവയുഗം</span>
           </span>
@@ -51,7 +51,7 @@ export default function Home() {
           <img
             src="/logo.png"
             alt="Navayugam logo"
-            className="relative mx-auto mb-6 h-28 w-28 rounded-full border-4 border-party-gold object-cover shadow-lg"
+            className="relative mx-auto mb-6 h-56 w-56 object-contain drop-shadow-lg sm:h-64 sm:w-64"
           />
           <h1 className="relative text-4xl font-bold tracking-tight text-party-ivory sm:text-5xl">
             Navayugam Samskarika Vedi
