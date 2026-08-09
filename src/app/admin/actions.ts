@@ -67,22 +67,29 @@ async function uploadPhotoIfProvided(
 
 export async function createMember(formData: FormData) {
   const supabase = await createClient();
-  const fields = memberFields(formData);
+  const { id_number, ...fields } = memberFields(formData);
 
   const {
     data: { user },
   } = await supabase.auth.getUser();
 
-  const photo_path = await uploadPhotoIfProvided(supabase, formData, fields.id_number);
-
-  const { error } = await supabase.from("members").insert({
-    ...fields,
-    photo_path,
-    created_by: user?.id,
-  });
+  const { data: inserted, error } = await supabase
+    .from("members")
+    .insert({
+      ...fields,
+      ...(id_number ? { id_number } : {}),
+      created_by: user?.id,
+    })
+    .select()
+    .single();
 
   if (error) {
     return { error: error.message };
+  }
+
+  const photo_path = await uploadPhotoIfProvided(supabase, formData, inserted.id_number);
+  if (photo_path) {
+    await supabase.from("members").update({ photo_path }).eq("id", inserted.id);
   }
 
   revalidatePath("/admin");

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
-import { deleteMember, logout } from "./actions";
+import { deleteMember } from "./actions";
+import AdminNav from "./AdminNav";
 
 export default async function AdminDashboard() {
   const supabase = await createClient();
@@ -24,29 +25,21 @@ export default async function AdminDashboard() {
   );
 
   return (
-    <div className="mx-auto w-full max-w-5xl flex-1 px-6 py-10">
-      <div className="flex flex-wrap items-center justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-bold text-party-red">Members</h1>
-          <p className="font-malayalam text-sm text-foreground/60">അംഗങ്ങൾ</p>
-        </div>
-        <div className="flex gap-3">
+    <div className="flex flex-1 flex-col">
+      <AdminNav active="members" />
+      <div className="mx-auto w-full max-w-5xl flex-1 px-6 py-10">
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <h1 className="text-2xl font-bold text-party-red">Members</h1>
+            <p className="font-malayalam text-sm text-foreground/60">അംഗങ്ങൾ</p>
+          </div>
           <Link
             href="/admin/members/new"
             className="rounded bg-party-red px-4 py-2 text-sm font-semibold text-party-ivory hover:bg-party-red-dark"
           >
             + Add Member
           </Link>
-          <form action={logout}>
-            <button
-              type="submit"
-              className="rounded border border-party-red/30 px-4 py-2 text-sm font-medium text-party-red hover:bg-party-red/5"
-            >
-              Sign out
-            </button>
-          </form>
         </div>
-      </div>
 
       <div className="mt-8 overflow-x-auto rounded-lg border-2 border-party-red/20">
         <table className="w-full text-left text-sm">
@@ -114,6 +107,7 @@ export default async function AdminDashboard() {
             ))}
           </tbody>
         </table>
+      </div>
       </div>
     </div>
   );

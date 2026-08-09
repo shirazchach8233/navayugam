@@ -57,9 +57,8 @@ export default function MemberForm({
           ID Number
           <input
             name="id_number"
-            required
             defaultValue={initial?.id_number}
-            placeholder="e.g. 1525/2017"
+            placeholder={initial ? "" : "Auto-generated if left blank"}
             className={inputClass}
           />
         </label>
