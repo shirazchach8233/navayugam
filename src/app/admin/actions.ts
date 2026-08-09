@@ -115,9 +115,67 @@ export async function updateMember(id: string, formData: FormData) {
   redirect("/admin");
 }
 
+const RECYCLE_BIN_DAYS = 7;
+
 export async function deleteMember(id: string) {
   const supabase = await createClient();
-  const { error } = await supabase.from("members").delete().eq("id", id);
+  const { error } = await supabase
+    .from("members")
+    .update({ deleted_at: new Date().toISOString() })
+    .eq("id", id);
   if (error) throw new Error(error.message);
   revalidatePath("/admin");
+  revalidatePath("/admin/recycle-bin");
+}
+
+export async function restoreMember(id: string) {
+  const supabase = await createClient();
+  const { error } = await supabase
+    .from("members")
+    .update({ deleted_at: null })
+    .eq("id", id);
+  if (error) throw new Error(error.message);
+  revalidatePath("/admin");
+  revalidatePath("/admin/recycle-bin");
+}
+
+export async function permanentlyDeleteMember(id: string) {
+  const supabase = await createClient();
+
+  const { data: member } = await supabase
+    .from("members")
+    .select("photo_path")
+    .eq("id", id)
+    .single();
+
+  if (member?.photo_path) {
+    await supabase.storage.from("member-photos").remove([member.photo_path]);
+  }
+
+  const { error } = await supabase.from("members").delete().eq("id", id);
+  if (error) throw new Error(error.message);
+  revalidatePath("/admin/recycle-bin");
+}
+
+export async function purgeExpiredMembers() {
+  const supabase = await createClient();
+  const cutoff = new Date(Date.now() - RECYCLE_BIN_DAYS * 24 * 60 * 60 * 1000).toISOString();
+
+  const { data: expired } = await supabase
+    .from("members")
+    .select("id, photo_path")
+    .not("deleted_at", "is", null)
+    .lt("deleted_at", cutoff);
+
+  if (!expired || expired.length === 0) return;
+
+  const photoPaths = expired.map((m) => m.photo_path).filter((p): p is string => Boolean(p));
+  if (photoPaths.length > 0) {
+    await supabase.storage.from("member-photos").remove(photoPaths);
+  }
+
+  await supabase
+    .from("members")
+    .delete()
+    .in("id", expired.map((m) => m.id));
 }

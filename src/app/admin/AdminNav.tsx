@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { logout } from "./actions";
 
-export default function AdminNav({ active }: { active: "members" | "directory" }) {
-  const tabClass = (tab: "members" | "directory") =>
+type Tab = "members" | "directory" | "recycle-bin";
+
+export default function AdminNav({ active }: { active: Tab }) {
+  const tabClass = (tab: Tab) =>
     tab === active
       ? "border-b-2 border-party-red pb-3 text-party-red"
       : "pb-3 text-zinc-500 hover:text-party-red";
@@ -16,6 +18,9 @@ export default function AdminNav({ active }: { active: "members" | "directory" }
           </Link>
           <Link href="/admin/directory" className={tabClass("directory")}>
             Search &amp; Export
+          </Link>
+          <Link href="/admin/recycle-bin" className={tabClass("recycle-bin")}>
+            Recycle Bin
           </Link>
         </nav>
         <form action={logout}>

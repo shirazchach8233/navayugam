@@ -20,7 +20,11 @@ export default async function DirectoryPage({
   const params = toSearchParams(resolvedParams);
 
   const supabase = await createClient();
-  let query = supabase.from("members").select("*").order("created_at", { ascending: false });
+  let query = supabase
+    .from("members")
+    .select("*")
+    .is("deleted_at", null)
+    .order("created_at", { ascending: false });
   query = applyMemberFilters(query, params);
   const { data: members } = await query;
 

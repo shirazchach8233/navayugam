@@ -9,6 +9,7 @@ export default async function AdminDashboard() {
   const { data: members } = await supabase
     .from("members")
     .select("*")
+    .is("deleted_at", null)
     .order("created_at", { ascending: false });
 
   const withPhotos = await Promise.all(

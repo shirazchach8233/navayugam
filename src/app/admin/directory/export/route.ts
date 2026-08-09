@@ -33,7 +33,11 @@ function csvEscape(value: unknown) {
 export async function GET(request: NextRequest) {
   const supabase = await createClient();
 
-  let query = supabase.from("members").select("*").order("created_at", { ascending: false });
+  let query = supabase
+    .from("members")
+    .select("*")
+    .is("deleted_at", null)
+    .order("created_at", { ascending: false });
   query = applyMemberFilters(query, request.nextUrl.searchParams);
   const { data: members, error } = await query;
 
