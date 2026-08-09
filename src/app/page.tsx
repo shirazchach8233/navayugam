@@ -47,7 +47,12 @@ export default function Home() {
         >
           <Star className="pointer-events-none absolute -top-10 -left-10 h-64 w-64 text-white/5" />
           <Star className="pointer-events-none absolute -bottom-16 -right-16 h-72 w-72 text-white/5" />
-          <Star className="relative mx-auto mb-6 h-16 w-16 text-party-gold" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/logo.png"
+            alt="Navayugam logo"
+            className="relative mx-auto mb-6 h-28 w-28 rounded-full border-4 border-party-gold object-cover shadow-lg"
+          />
           <h1 className="relative text-4xl font-bold tracking-tight text-party-ivory sm:text-5xl">
             Navayugam Samskarika Vedi
           </h1>
