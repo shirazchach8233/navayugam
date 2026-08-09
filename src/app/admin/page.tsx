@@ -2,6 +2,7 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { deleteMember } from "./actions";
 import AdminNav from "./AdminNav";
+import ConfirmButton from "./ConfirmButton";
 
 export default async function AdminDashboard() {
   const supabase = await createClient();
@@ -95,12 +96,12 @@ export default async function AdminDashboard() {
                       Edit
                     </Link>
                     <form action={deleteMember.bind(null, member.id)}>
-                      <button
-                        type="submit"
+                      <ConfirmButton
+                        message={`Delete ${member.name}? This can be undone from the Recycle Bin within 7 days.`}
                         className="text-foreground/50 hover:text-party-red hover:underline"
                       >
                         Delete
-                      </button>
+                      </ConfirmButton>
                     </form>
                   </div>
                 </td>

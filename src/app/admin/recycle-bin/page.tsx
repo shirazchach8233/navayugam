@@ -1,7 +1,7 @@
 import { createClient } from "@/lib/supabase/server";
 import AdminNav from "../AdminNav";
 import { purgeExpiredMembers, restoreMember, permanentlyDeleteMember } from "../actions";
-import ConfirmDeleteButton from "./ConfirmDeleteButton";
+import ConfirmButton from "../ConfirmButton";
 
 const RECYCLE_BIN_DAYS = 7;
 
@@ -75,7 +75,12 @@ export default async function RecycleBinPage() {
                           </button>
                         </form>
                         <form action={permanentlyDeleteMember.bind(null, member.id)}>
-                          <ConfirmDeleteButton name={member.name} />
+                          <ConfirmButton
+                            message={`Permanently delete ${member.name}? This cannot be undone.`}
+                            className="text-party-red hover:underline"
+                          >
+                            Delete Permanently
+                          </ConfirmButton>
                         </form>
                       </div>
                     </td>
