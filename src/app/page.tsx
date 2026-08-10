@@ -3,6 +3,7 @@ const nav = [
   { en: "About", ml: "ഞങ്ങളെക്കുറിച്ച്", href: "#about" },
   { en: "Leadership", ml: "നേതൃത്വം", href: "#leadership" },
   { en: "News", ml: "വാർത്തകൾ", href: "#news" },
+  { en: "Updates", ml: "അപ്ഡേറ്റുകൾ", href: "#facebook" },
   { en: "Contact", ml: "ബന്ധപ്പെടുക", href: "#contact" },
 ];
 
@@ -163,6 +164,33 @@ export default function Home() {
               </a>
             </p>
           </article>
+        </section>
+
+        <section id="facebook" className="border-y-2 border-party-gold/40 bg-party-red/5 px-6 py-16 text-center">
+          <h2 className="flex items-center justify-center gap-3 text-2xl font-bold text-party-red">
+            <Star className="h-6 w-6 text-party-red" />
+            Latest Updates <span className="font-malayalam text-xl">| അപ്ഡേറ്റുകൾ</span>
+          </h2>
+          <div className="mx-auto mt-2 h-1 w-16 bg-party-gold" />
+          <div className="mx-auto mt-6 max-w-md overflow-hidden rounded-lg border-2 border-party-red/20 bg-white shadow-sm">
+            <iframe
+              src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fnavayugam.dammam&tabs=timeline&width=400&height=600&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true"
+              width="100%"
+              height="600"
+              style={{ border: "none", overflow: "auto", display: "block" }}
+              scrolling="yes"
+              allowFullScreen
+              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+            />
+          </div>
+          <a
+            href="https://www.facebook.com/navayugam.dammam"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 inline-block text-sm font-medium text-party-red hover:underline"
+          >
+            Visit our Facebook Page →
+          </a>
         </section>
 
         <section id="contact" className="border-t-4 border-party-gold bg-party-red px-6 py-16 text-center">
