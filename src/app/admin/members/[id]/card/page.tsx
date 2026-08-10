@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
-import PrintButton from "./PrintButton";
+import PrintButton from "../../../PrintButton";
 
 const fields = [
   { label: "പേര്", key: "name" as const },
